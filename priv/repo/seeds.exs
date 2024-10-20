@@ -12,19 +12,21 @@
 
 alias GoblinFightClub.{Repo, Monster}
 
-all_monsters = Path.wildcard("priv/static/assets/pathfinder-bestiary/*.json")
-  |> Enum.map(&(File.read!(&1)))
+all_monsters =
+  Path.wildcard("priv/static/assets/pathfinder-bestiary/*.json")
+  |> Enum.map(&File.read!(&1))
   |> IO.inspect(label: "After reading file")
-  |> Enum.map(&(Jason.decode!(&1)))
+  |> Enum.map(&Jason.decode!(&1))
   |> IO.inspect(label: "After decoding json")
-  |> Enum.map(&(%{name: get_in(&1, ["name"]), level: get_in(&1, ["system", "details", "level", "value"])}))
+  |> Enum.map(
+    &%{name: get_in(&1, ["name"]), level: get_in(&1, ["system", "details", "level", "value"])}
+  )
   |> IO.inspect(label: "After grabbing data")
 
-Enum.each(all_monsters, fn monster -> 
+Enum.each(all_monsters, fn monster ->
   %Monster{}
   |> Monster.changeset(monster)
   |> Repo.insert!()
 end)
 
-IO.puts "Fin"
-
+IO.puts("Fin")
