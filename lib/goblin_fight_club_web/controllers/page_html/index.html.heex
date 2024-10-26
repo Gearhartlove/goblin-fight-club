@@ -20,67 +20,54 @@
       </div>
     </header>
     <main>
-      <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-6 gap-3">
-          <div class="col-span-6">
-            <h2 class="text-2xl">Party</h2>
+      <form action="/">
+        <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-6 gap-3">
+            <div class="col-span-6">
+              <h2 class="text-2xl">Party</h2>
+            </div>
+            <div class="col-span-2">
+              <label for="player_count">
+                Players
+              </label>
+            </div>
+            <div class="col-span-2">
+              <label for="party_level">
+                Level
+              </label>
+            </div>
+            <div class="col-span-2">
+            </div>
+            <input class="col-span-2" type="number" id="player_count" name="player_count" value={@player_count} />
+            <input class="col-span-2" type="number" id="party_level" name="party_level" value={@party_level} />
           </div>
-          <div class="col-span-2">Players</div>
-          <div class="col-span-2">Level</div>
-          <div class="col-span-2">
-            <%!-- Cancel Column --%>
-          </div>
-          <input class="col-span-2" type="number" id="player_count" name="player_count" value="4" />
-          <input class="col-span-2" type="number" id="player_count" name="player_count" value="11" />
-          <button type="button"
-            class="col-span-2 rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-red-600 shadow-sm ring-1 ring-inset ring-red-600 hover:bg-gray-50">
-            X
-          </button>
-          <button type="button"
-            class="col-span-6 rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-green-600 shadow-sm ring-1 ring-inset ring-green-600 hover:bg-gray-50">
-            + Add Generic Group
-          </button>
-        </div>
-        <div class="grid grid-cols-3 gap-3">
-          <div class="col-span-3">
-            <h2 class="text-2xl pt-6">
-              Encounter
-            </h2>
-          </div>
-          <%!-- Selector --%>
+          <div class="grid grid-cols-3 gap-3">
+            <div class="col-span-3">
+              <h2 class="text-2xl pt-6">
+                Encounter
+              </h2>
+            </div>
             <div class="">Difficulty</div>
-            <%!-- Selector --%>
-              <div class="">Encounter Groups</div>
-              <%!-- Generate --%>
-                <div></div>
-                <select id="difficulty" name="difficulty"
-                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                  <option>Trivial</option>
-                  <option>Low</option>
-                  <option>Moderate</option>
-                  <option>Severe</option>
-                  <option>Extreme</option>
-                </select>
-                <select id="group_kind" name="group_kind"
-                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                  <option>Random</option>
-                  <option>Boss and Lackeys</option>
-                  <option>Boss and Lieutenant</option>
-                  <option>Elite Enemies</option>
-                  <option>Lieutenant and Lackeys</option>
-                  <option>Mated Pair</option>
-                  <option>Troop</option>
-                  <option>Mook Squad</option>
-                </select>
-                <button type="button"
-                  class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-green-600 shadow-sm ring-1 ring-inset ring-green-600 hover:bg-gray-50">
-                  Generate
-                </button>
+            <div class="">Encounter Groups</div>
+            <div></div>
+            <select id="selected_difficulty" name="selected_difficulty"
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+              <%= raw(@difficulties) %>
+            </select>
+            <select id="selected_group_kind" name="selected_group_kind"
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+              <%= raw(@group_kinds) %>
+            </select>
+            <button type="submit"
+              class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-green-600 shadow-sm ring-1 ring-inset ring-green-600 hover:bg-gray-50">
+              Generate
+            </button>
+          </div>
+          <div class="pt-10">
+            <%= raw(@generated_encounter) %>
+          </div>
         </div>
-        <div class="pt-10">
-          Generated content goes here
-        </div>
-      </div>
+      </form>
     </main>
   </div>
 </body>

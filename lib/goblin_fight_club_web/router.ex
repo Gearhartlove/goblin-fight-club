@@ -18,7 +18,6 @@ defmodule GoblinFightClubWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
-    get "/monster", PageController, :monster
   end
 
   # Other scopes may use custom stacks.
