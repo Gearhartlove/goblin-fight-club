@@ -10,7 +10,6 @@ defmodule GoblinFightClubWeb.PageController do
     }
 
     # ensure that player_count and party_level are integers when loaded into params
-
     params =
       params
       |> Enum.map(fn {key, value} ->
@@ -22,7 +21,6 @@ defmodule GoblinFightClubWeb.PageController do
       end)
       |> Enum.into(%{})
 
-    # convert to atoms
     params = Map.merge(defaults, params)
 
     assigns = %{
@@ -32,7 +30,8 @@ defmodule GoblinFightClubWeb.PageController do
       group_kinds: html_group_kinds(params["selected_group_kind"]),
       selected_difficulty: params["selected_difficulty"],
       difficulties: html_difficulties(params["selected_difficulty"]),
-      generated_encounter: generate_encounter(params)
+      generated_encounter: generate_encounter(params),
+      layout: false,
     }
 
     render(conn, :index, assigns)
@@ -84,18 +83,6 @@ defmodule GoblinFightClubWeb.PageController do
          "selected_group_kind" => group_kind,
          "selected_difficulty" => difficulty
        }) do
-    # player_count => encounter_budget => monster to %{}
-
-    # calculate xp budget
-    # xp_budget =
-    #   case difficulty do
-    #     "Trivial" -> 40
-    #     "Low" -> 60
-    #     "Moderate" -> 80
-    #     "Severe" -> 120
-    #     "Extreme" -> 160
-    #   end
-
     # calculate monsters counts and levels
     monster_count_and_relative_levels =
       case group_kind do
@@ -143,11 +130,7 @@ defmodule GoblinFightClubWeb.PageController do
     end)
     |> IO.inspect(label: "after select monsters randomly")
     # render the monsters
-    |> Enum.map(fn monster -> "<p>#{monster.name} #{monster.level}<\p>" end)
+    |> Enum.map(fn monster -> "<p>#{monster.name} <span class='text-sm italic'>level #{monster.level}</span><\p>" end)
     |> Enum.join("\n")
   end
-
-  # create query using ecto based off of monster_count_and_relative_levels
-  # query the database for a random monsters that match the levels
-  # return the monsters
 end

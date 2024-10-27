@@ -1,73 +1,72 @@
 <head>
-  <title>Example Domain</title>
-
+  <title>Goblin Fight Club</title>
+  <link rel="icon" type="image/x-icon" href="images/boxing-helmet-svgrepo-com.svg">
   <meta charset="utf-8" />
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style type="text/css">
-    .center {
-      margin: auto;
-      width: 50%;
-    }
-  </style>
 </head>
 
 <body>
   <div class="min-h-full">
     <header class="bg-white shadow">
       <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        <h1 class="text-3xl font-bold tracking-tight text-gray-900">Goblin Fight Club</h1>
+        <div class="flex items-center gap-6">
+          <img src="images/boxing-helmet-svgrepo-com.svg" class="w-16" />
+          <h1 class="text-3xl font-bold tracking-tight text-gray-900">Goblin Fight Club</h1>
+        </div>
       </div>
     </header>
     <main>
-      <form action="/">
-        <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-          <div class="grid grid-cols-6 gap-3">
-            <div class="col-span-6">
-              <h2 class="text-2xl">Party</h2>
+      <div class="flex justify-center">
+        <form action="/">
+          <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 gap-4">
+              <div class="col-span-2">
+                <h2 class="text-2xl">Template Encounters</h2>
+              </div>
+              <div>
+                <label for="player_count">
+                  Players
+                </label>
+              </div>
+              <div>
+                <label for="party_level">
+                  Level
+                </label>
+              </div>
+              <div>
+                <input
+                  class="block w-full rounded-md bg-slate-200 border-0 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-inset focus:ring-1 focus:ring-gray-300"
+                  type="number" id="player_count" name="player_count" value={@player_count} readonly />
+              </div>
+              <div>
+                <input
+                  class="block w-full rounded-md border-0 shadow-sm ring-1 ring-inset ring-gray-300 focus:border-none focus:ring-inset focus:ring-2 focus:ring-green-700"
+                  type="number" id="party_level" name="party_level" value={@party_level} max="20" , min="0" />
+              </div>
+              <div class="col-span-2">
+                Template
+              </div>
+              <div>
+                <select id="selected_group_kind" name="selected_group_kind"
+                  class="col-span-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-green-700 sm:text-sm sm:leading-6">
+                  <%= raw(@group_kinds) %>
+                </select>
+              </div>
+              <div></div>
+              <div>
+                <button type="submit"
+                  class="rounded-md mt-3 bg-white px-2.5 py-1.5 text-sm font-semibold text-green-700 shadow-sm ring-1 ring-inset ring-green-700 hover:bg-gray-50">
+                  Generate
+                </button>
+              </div>
             </div>
-            <div class="col-span-2">
-              <label for="player_count">
-                Players
-              </label>
+            <div class="pt-10">
+              <%= raw(@generated_encounter) %>
             </div>
-            <div class="col-span-2">
-              <label for="party_level">
-                Level
-              </label>
-            </div>
-            <div class="col-span-2">
-            </div>
-            <input class="col-span-2" type="number" id="player_count" name="player_count" value={@player_count} />
-            <input class="col-span-2" type="number" id="party_level" name="party_level" value={@party_level} />
           </div>
-          <div class="grid grid-cols-3 gap-3">
-            <div class="col-span-3">
-              <h2 class="text-2xl pt-6">
-                Encounter
-              </h2>
-            </div>
-            <div class="">Difficulty</div>
-            <div class="">Encounter Groups</div>
-            <div></div>
-            <select id="selected_difficulty" name="selected_difficulty"
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-              <%= raw(@difficulties) %>
-            </select>
-            <select id="selected_group_kind" name="selected_group_kind"
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-              <%= raw(@group_kinds) %>
-            </select>
-            <button type="submit"
-              class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-green-600 shadow-sm ring-1 ring-inset ring-green-600 hover:bg-gray-50">
-              Generate
-            </button>
-          </div>
-          <div class="pt-10">
-            <%= raw(@generated_encounter) %>
-          </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </main>
   </div>
 </body>
