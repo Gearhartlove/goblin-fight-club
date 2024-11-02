@@ -4,9 +4,9 @@ defmodule GoblinFightClub.Setup do
   @doc """
   Add's the monster's to the database
   """
-  def seed() do
+  def seed(path \\ "priv/static/pathfinder-bestiary/*.json") do
     all_monsters =
-      Path.wildcard("priv/static/pathfinder-bestiary/*.json")
+      Path.wildcard(path)
       |> Enum.map(&File.read!(&1))
       |> IO.inspect(label: "After reading file")
       |> Enum.map(&Jason.decode!(&1))
