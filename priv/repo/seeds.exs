@@ -13,7 +13,7 @@
 alias GoblinFightClub.{Repo, Monster}
 
 all_monsters =
-  Path.wildcard("priv/static/assets/pathfinder-bestiary/*.json")
+  Path.wildcard("priv/static/pathfinder-bestiary/*.json")
   |> Enum.map(&File.read!(&1))
   |> IO.inspect(label: "After reading file")
   |> Enum.map(&Jason.decode!(&1))
